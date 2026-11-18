@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>测测你了不了解我口牙</title>
+  </head>
+  <style>
+    .aquamarine {
+      color: rgb(10, 118, 82);
+    }
+    .red {
+      color: red;
+    }
+    .align {
+      text-align: center;
+    }
+  </style>
+  <body>
+    <h1 class="align">了解度测试</h1>
+    <h2 class="aquamarine align">请回答以下五个问题，并选出你认为正确的答案</h2>
+    <hr />
+    <script>
+      function questinAndAnswer(q, index, True, a1, a2, a3, a4) {
+        document.write(`
+        <div class="align">
+        <h3>${q}</h3>
+      A.${a1}<input type="radio" name="answer${index}" value="A">
+      <br>
+      B.${a2}<input type="radio" name="answer${index}" value="B">
+      <br>
+      C.${a3}<input type="radio" name="answer${index}" value="C">
+      <br>
+      D.${a4}<input type="radio" name="answer${index}" value="D">
+      <br>
+      <br>
+      </div>`);
+      }
+      function check() {
+        let temp = 0;
+        for (let j = 0; j < 5; j++) {
+          const select = document.querySelector(
+            `input[name = "answer${index[j]}"]:checked`,
+          );
+          if (select) {
+            if (select.value === trueAnswer[j]) {
+              temp++;
+            }
+          }
+        }
+        let result = (temp / 5) * 100;
+        document.getElementById("result").innerText =
+          `你对我的了解度为${result}%`;
+      }
+      const question = [
+        "Q1:我周末一般睡多久",
+        "Q2:我不吃什么",
+        "Q3:我对c语言的评价",
+        "Q4:最怕舍友干的事",
+        "Q5:我旷过最多的课",
+      ];
+      const answer = [
+        ["根本不睡", "3-7h", "8-12h", "大于12h"],
+        ["洋葱", "草莓", "榛子", "以上均是"],
+        ["简单好用", "一般能用", "挺难的不好用", "废物语言"],
+        ["熬夜开麦打游戏", "睡觉打呼噜", "睡觉说梦话", "根本不回来睡觉"],
+        ["线性代数", "高等数学", "中国近代史纲要", "思想道德与法治"],
+      ];
+      const trueAnswer = ["D", "D", "D", "C", "A"];
+      const index = [1, 2, 3, 4, 5];
+      for (let i = 0; i < 5; i++) {
+        questinAndAnswer(
+          question[i],
+          index[i],
+          trueAnswer[i],
+          answer[i][0],
+          answer[i][1],
+          answer[i][2],
+          answer[i][3],
+        );
+      }
+      document.write(`
+          <br>
+          <div class="align"><button onclick="check()" style="font-size:20px;font-weight:bold">提交</button></div>
+          <h2 id="result" class="red align"></h2>
+          <br>
+          <br>
+          <br>
+          <hr>
+          `);
+    </script>
+  </body>
+</html>
